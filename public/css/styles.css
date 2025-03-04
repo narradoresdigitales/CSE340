@@ -4,3 +4,21 @@
 *:after {
   box-sizing: border-box;
 }
+header {
+  display: flex;
+  justify-content: space-between;
+}
+nav {
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  
+}
+nav ul {
+  display: flex;
+  gap: 20px; 
+}
+nav ul li {
+  display: inline-block;
+}
