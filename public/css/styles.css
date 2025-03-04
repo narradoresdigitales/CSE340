@@ -7,18 +7,73 @@
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: black;
+  margin-bottom: 15px;
+  }
+header a {
+  text-decoration: none;
+  color: inherit;
 }
+.siteName {
+  font-size: 1.5rem;
+}
+.logIn {
+  font-variant: small-caps;
+}
+
 nav {
   color: white;
   background-color: black;
   display: flex;
   justify-content: space-around;
-  
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 40px; 
+  margin-bottom: 15px; 
 }
 nav ul {
   display: flex;
-  gap: 20px; 
+  gap: 10px; 
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  justify-content: space-between;
 }
 nav ul li {
   display: inline-block;
+}
+h1, h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.reviews {
+  padding-left: 0;
+  list-style-position: inside;
+  }
+.reviews li {
+  margin-left: 0px;
+  margin-bottom: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.image-container {
+  background-color: #00b7eb; 
+  border: 2px solid #008cba;
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+}
+.item img {
+  width: 100%;
 }
