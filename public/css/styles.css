@@ -51,6 +51,38 @@ h1, h2 {
   font-size: 1.25rem;
   font-weight: bold;
 }
+
+
+/***************************/
+
+
+
+.overlay  {
+  color: #00b7eb;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  
+}
+.delorean-promo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.own-delorean {
+  background-color: #0096D6;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  
+}
+
+/***************************/
+
+#delorean-reviews {
+  margin-top: 45px;
+}
 .reviews {
   padding-left: 0;
   list-style-position: inside;
@@ -77,3 +109,5 @@ h1, h2 {
 .item img {
   width: 100%;
 }
+
+
