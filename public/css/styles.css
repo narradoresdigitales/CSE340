@@ -55,49 +55,105 @@ h1, h2 {
 
 /***************************/
 
-
-
 .overlay  {
+  display: flex;
+  position: relative;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.delorean-sale {
+  position: relative;
+    width: 100%;
+}
+.delorean-image-index {
+  width: 110%;
+  height: auto;
+  display: block;
+}
+.text-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   color: #00b7eb;
   background-color: rgba(255, 255, 255, 0.7);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  
+  padding: 10px;
+  border-radius: 5px;
 }
+.text-overlay ul {
+  list-style: none; /* Removes bullet points */
+    padding: 0;
+    margin: 0;
+    color: black; /* Ensures text is visible */
+    text-align: left;
+}
+.text-overlay li {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #00b7eb;
+  }
+
+
 .delorean-promo {
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: bold;
 }
+
 .own-delorean {
   background-color: #0096D6;
   color: black;
-  font-weight: bold;
+  padding: 7px 7px;
   border: none;
-  padding: 5px 10px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
   
 }
+.own-delorean:hover {
+  background-color: darkred;
+}
 
-/***************************/
 
+/*****Reviews Container **********************/
+.review-container {
+  max-width: 400px;
+  padding: 15px;
+  box-shadow: 2px 2px 10px rgba(0.0.0.0.1);
+}
 #delorean-reviews {
-  margin-top: 45px;
+  font-size: 20;
+  font-weight: bold;
 }
 .reviews {
-  padding-left: 0;
-  list-style-position: inside;
+  font-size: 14px;
+  padding-left: 20px;
+  list-style-type: disc;
   }
 .reviews li {
   margin-left: 0px;
   margin-bottom: 5px;
 }
-.grid-container {
+
+/******Upgrades container*********************/
+
+.upgrades {
+  grid-column: 1/-1;
+  justify-self: start;
+  
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.upgrade-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 20px;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  justify-content: start;
+  text-align: left;
+  
 }
 .image-container {
   background-color: #00b7eb; 
@@ -106,8 +162,10 @@ h1, h2 {
   color: white;
   font-weight: bold;
 }
-.item img {
-  width: 100%;
+.image-container img {
+  width: 50px;
+  height: auto;
+
 }
 
-
+/***************************/
