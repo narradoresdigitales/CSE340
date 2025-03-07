@@ -21,6 +21,12 @@ app.set('layout', './layouts/layout')
 
 
 /* ***********************
+ * Serve Static Files 
+ *************************/
+app.use(express.static("public"));
+
+
+/* ***********************
  * Routes
  *************************/
 app.use(static)
