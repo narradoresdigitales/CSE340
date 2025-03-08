@@ -85,18 +85,18 @@ h1, h2 {
   border-radius: 5px;
 }
 .text-overlay ul {
-  list-style: none; /* Removes bullet points */
+  list-style: none; 
     padding: 0;
     margin: 0;
-    color: black; /* Ensures text is visible */
+    color: black; 
     text-align: left;
 }
 .text-overlay li {
   font-size: 18px;
   margin-bottom: 5px;
-  color: #00b7eb; 
-  font-weight: bold;
-  }
+  color: black; 
+  text-shadow: 2px 2px 4px black;
+}
 
 
 .delorean-promo {
@@ -113,16 +113,16 @@ h1, h2 {
   font-size: 14px;
   font-weight: bold;
   
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth effects */
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); 
   
 }
 .own-delorean:hover {
   background-color: darkred;
-  transform: scale(1.05); /* Slight enlargement on hover */
+  transform: scale(1.05);
 }
 .own-delorean:active {
-  transform: scale(0.95); /* Adds a press effect */
+  transform: scale(0.95); 
 }
 
 
@@ -194,7 +194,7 @@ h1, h2 {
 /**********************MEDIA QUERIES**********************************************/
 /*********************************************************************/
 
-@media (min-width: 768px) { /* Tablet and larger */
+@media (min-width: 768px) { 
   
   body {
     display: flex;
