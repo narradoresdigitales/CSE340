@@ -53,6 +53,13 @@ nav ul {
 }
 nav ul li {
   display: inline-block;
+  
+}
+
+nav ul li:hover {
+  border: 2px solid #000;
+  transform: scale(1.05);
+  border: 2px solid white;
 }
 h1, h2 {
   font-size: 1.25rem;
@@ -78,6 +85,12 @@ h1, h2 {
   width: 90%;
   height: auto;
   display: block;
+}
+.delorean-image-index:hover {
+  transform: scale(1.1); /* Enlarges the image */
+  transition: transform 0.3s ease-in-out;
+  
+  
 }
 .text-overlay {
   position: absolute;
@@ -196,6 +209,11 @@ h1, h2 {
 .image-container img {
   width: 50px;
   height: auto;
+}
+
+.image-container img:hover {
+  box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 /**********************MEDIA QUERIES**********************************************/
