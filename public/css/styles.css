@@ -110,7 +110,7 @@ h1, h2 {
 }
 
 .own-delorean {
-  background-color: #00b7eb; ;
+  background-color: lightblue; ;
   color: black;
   padding: 7px 7px;
   border: none;
@@ -124,7 +124,8 @@ h1, h2 {
   
 }
 .own-delorean:hover {
-  background-color: darkred;
+  background-color: lightblue;
+  border: 2px solid #000;
   transform: scale(1.05);
 }
 .own-delorean:active {
