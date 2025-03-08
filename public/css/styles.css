@@ -1,3 +1,5 @@
+
+
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -5,6 +7,9 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Orbitron", sans-serif; 
+}
 
 header {
   display: flex;
@@ -110,7 +115,8 @@ h1, h2 {
   padding: 7px 7px;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-family: Orbitron;
+  font-size: 16px;
   font-weight: bold;
   
   transition: background-color 0.3s ease, transform 0.2s ease; 
@@ -165,7 +171,7 @@ h1, h2 {
 }
 .item p {
   margin-top: 5px;
-  margin-left: 22px;
+  margin-left: 15px;
 
 }
 .upgrade-container {
