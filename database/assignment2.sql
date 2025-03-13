@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS public.account
 	account_lastname character varying NOT NULL,
 	account_email character varying NOT NULL,
 	account_password character varying NOT NULL,
-	account_type account_type NOT NULL,
+	account_type account_type NOT NULL
 	DEFAULT 'Client'::account_type,
 	CONSTRAINT account_pkey PRIMARY KEY (account_id)
 );
@@ -248,3 +248,28 @@ VALUES   (
     'White',
     5
 );
+
+
+--1. INSERT TONY STARK record --
+INSERT INTO account ( account_firstname, account_lastname, account_email, account_password ) 
+
+	VALUES ( 'Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n' );
+
+--2. MODIFY the Tony Stark record-- 
+UPDATE account 
+SET account_type = 'Admin'
+WHERE account_email = 'tony@starkent.com';
+
+--3. DELETE TONY STARK record--
+DELETE FROM account
+WHERE account_email = 'tony@starkent.com';
+
+--4. MODIFY 'GM Hummer' record --
+UPDATE inventory
+SET inv_description = REPLACE(inv_description, 'small interior', 'huge interior')
+WHERE inv_model = 'Hummer';
+
+--5. INNER JOIN  -- 
+SELECT * 
+FROM inventory 
+JOIN classification ON inventory.classification_id = classification.classification_id;
