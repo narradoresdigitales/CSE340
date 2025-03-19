@@ -28,6 +28,7 @@ app.set('layout', './layouts/layout')
 app.use(express.static("public"));
 
 
+
 /* ***********************
  * Routes
  *************************/
