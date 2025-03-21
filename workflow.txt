@@ -1,0 +1,79 @@
+
+VIEWS, those things that are delivered to the browser constitute the interface that allows the client to interact with the application.
+
+Our views will only interact with controllers, through routes. 
+
+
+
+
+
+The CONTROLLER will contain all of the logic needed to determine what the client is requesting and how to properly respond.
+
+If the controller determines that data, stored in a database, 
+is needed for the response it will call on the model to query the data from the database, 
+and the model will return the result set to the controller.
+
+The controller may also need some utility functions to work with the resultset, 
+and will call those functions from outside resources that we build for such a purpose.
+
+
+
+
+The over-arching idea behind the MVC approach is a distinct separation of tasks, 
+with each item in the application filling a specific task. Views always represent the interface. 
+Controllers always control the flow from request through response. Models serve to interact with the database server to store, retrieve, update or delete data.
+
+
+Closely related is the use of external packages, which was discussed earlier. 
+These packages, once installed, must be imported or required in order to be used.
+
+
+
+******NOTES ON WORKFLOW********
+
+
+
+-----STEP ONE || THE MODEL -----
+
+
+We will also build our first MODEL. It will only contain a single function at this point. 
+The function will query our database server for data which will be manipulated and used as the main navigation bar for the application.
+
+
+
+
+
+-----STEP TWO || THE CONTROLLER -----
+
+In turn, our first controller will be built. 
+It will be given simple logic to trigger the process to get the data from the database, 
+wrap it up in HTML, attach a CSS identifier to the HTML structure, 
+then deliver that to the index.ejs view and cause the view to be returned to the browser.
+
+
+
+
+-----STEP THREE || THE ROUTE -----
+
+The route, which listens for the HTTTP "GET" verb, 
+requesting the home view, will be altered to send the request to the controller for processing.
+
+
+
+
+-----STEP FOUR || THE UTILITY -----
+
+The utility file, containing the function to get the data from the model, 
+wrapping it up into an HTML structure and sending it to the controller will be built.
+
+
+
+
+
+-----STEP FIVE || THE VIEW -----
+
+Finally, the navigation partial file will be edited to display the now dynamically generated navigation bar, rather than the old static code.
+
+It cannot be stressed enough, there are many moving parts. But each one carries out its task and allows the others to do their part. Together, they make the application work.
+
+When finished, the application should work, just as it did previously, but taking on a more professional approach, and an approach that uses the separation of task to allow an overall ease of maintenance and scalability.
