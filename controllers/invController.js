@@ -22,8 +22,9 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 invCont.showVehicleDetail = async function(req, res, next) {
   const inv_id = req.params.invId;
-  const data = await invModel.getVehicleDetail(inv_id)
-  const grid = await utilities.buildGetVehicleByIdGrid(data)
+  const vehicle = await invModel.getVehicleByInvId(inv_id);
+  console.log("Vehicle Data in Controller:", vehicle);
+  const grid = await utilities.buildGetVehicleByIdGrid([vehicle]);
   let nav = await utilities.getNav()
   // Troubleshooting logs // 
 
@@ -32,8 +33,8 @@ invCont.showVehicleDetail = async function(req, res, next) {
     vehicle,
     nav, 
     grid,
-  })
-}
+  });
+};
 
 
 module.exports = invCont
