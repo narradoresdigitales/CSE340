@@ -29,7 +29,7 @@ invCont.showVehicleDetail = async function(req, res, next) {
   // Troubleshooting logs // 
 
   res.render("inventory/vehicle-detail", {
-    title: `${vehicle.inv_make} ${vehicle.inv_model}`,
+    title: `${vehicle.inv_year} ${vehicle.inv_model} ${vehicle.inv_model}`,
     vehicle,
     nav, 
     grid,
