@@ -346,6 +346,23 @@ p.notice {
   max-width: 400px;
   height: auto;
   margin-bottom: 1rem;
+  border-radius: 8px; /* Soften the image edges */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+.vehicle-info .info-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  /* Additional styling to make it stand out */
+  border-bottom: 2px solid #007bff; /* Blue underline matching your app's theme */
+  padding-bottom: 0.25rem; /* Space between text and underline */
+  letter-spacing: 0.5px; /* Slight letter spacing for emphasis */
+}
+
+.info-header {
+  font-weight: bold;
 }
 
 .vehicle-detail p {
@@ -356,6 +373,13 @@ p.notice {
 .vehicle-detail strong {
   color: #000;
 }
+
+
+
+
+
+
+
 
 /* Media Queries for Larger Screens */
 @media (min-width: 768px) {
@@ -395,6 +419,9 @@ p.notice {
     flex-direction: row;
     align-items: flex-start;
     text-align: left;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   }
 
   .vehicle-detail img {
@@ -407,8 +434,6 @@ p.notice {
   .vehicle-detail {
     flex-wrap: nowrap;
   }
-
-
 
   .vehicle-detail p {
     font-size: 1.1rem;
@@ -424,16 +449,37 @@ p.notice {
     font-size: 1.2rem;
   }
 
+  .vehicle-info .info-header {
+    font-size: 1.5rem;
+    border-bottom-width: 3px; /* Thicker underline on larger screens */
+  }
+
+
   .vehicle-info {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
   .vehicle-info p {
+    margin: 0;
     font-size: 1.1rem;
+    color: #333;
+  }
+  .vehicle-info p:first-child {
+    font-size: 1.5rem; /* Slightly larger for the "Details" heading */
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .vehicle-info strong {
+    color: #000;
+    font-weight: 600;
   }
 
 }
+
+
+
+
 
 @media (min-width: 1024px) {
   /* Classification View */
