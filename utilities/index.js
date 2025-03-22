@@ -36,11 +36,13 @@ Util.buildClassificationGrid = async function(data) {
       console.log("Vehicle Data:", vehicle);  // Log full vehicle object
       console.log("Image Path:", vehicle.inv_thumbnail);  // Log image path      
       grid += '<li>';
+      
       grid += '<a href="../../inv/detail/' + vehicle.inv_id 
         + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model 
         + ' details"><img src="' + vehicle.inv_thumbnail 
         + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model 
         + ' on CSE Motors" /></a>';
+      
       grid += '<div class="namePrice">';
       grid += '<hr />';
       grid += '<h2>';

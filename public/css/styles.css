@@ -216,7 +216,7 @@ h1, h2 {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-/**********************MEDIA QUERIES**********************************************/
+/**********************MEDIA QUERIES*********INDEX.EJS*************************************/
 /*********************************************************************/
 
 @media (min-width: 768px) { 
@@ -287,18 +287,42 @@ h1, h2 {
 #inv-display li {
   margin-bottom: 1.5rem;
   text-align: center;
+  background-color: #fff; /* White background for each item */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
+
+#inv-display li:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+#inv-display .image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Enforce a consistent aspect ratio (e.g., 3:2) */
+  overflow: hidden; /* Hide overflow if image doesn’t fit */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+
 
 #inv-display img {
   width: 100%;
   max-width: 300px;
+  aspect-ratio: 4 / 3; /* Changed to 4:3, a common thumbnail ratio—adjust as needed */
   height: auto;
+  object-fit: contain; /* Show the full image, no cropping */
+  background-color: #f5f5f5; /* Light gray background for letterboxing */
   display: block;
-  margin: 0 auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 #inv-display .namePrice {
   margin-top: 0.5rem;
+  padding: 0.75rem; /* Add padding for content */
 }
 
 #inv-display hr {
@@ -325,6 +349,7 @@ h1, h2 {
   display: block;
   font-size: 1rem;
   color: #000;
+  font-weight: 500;
 }
 
 /* No Results Notice */
@@ -395,15 +420,17 @@ p.notice {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    gap: 1.5rem; /* Space between items */
   }
 
   #inv-display li {
-    width: 48%;
-    margin-bottom: 2rem;
+    width: calc(50% - 0.75rem); /* Two columns, accounting for gap */
+    margin-bottom: 0; /* Gap handles spacing */
   }
 
   #inv-display img {
     max-width: 350px;
+    aspect-ratio: 4 / 3; /* Maintain aspect ratio */
   }
 
   #inv-display h2 {
@@ -484,11 +511,15 @@ p.notice {
 @media (min-width: 1024px) {
   /* Classification View */
   #inv-display li {
-    width: 31%;
+    width: calc(33.33% - 1rem); /* Three columns, accounting for gap */
   }
 
   #inv-display img {
     max-width: 400px;
+  }
+
+  #inv-display h2 {
+    font-size: 1.75rem;
   }
 
   /* Vehicle Detail View */
