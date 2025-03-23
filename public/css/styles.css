@@ -1,5 +1,4 @@
 
-
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -20,7 +19,7 @@ header {
   box-sizing: border-box;
   color: black;
   margin-bottom: 15px;
-  }
+}
 header a {
   text-decoration: none;
   color: inherit;
@@ -53,23 +52,36 @@ nav ul {
 }
 nav ul li {
   display: inline-block;
-  
+}
+nav ul li:hover {
+  transform: scale(1.05);
 }
 
-nav ul li:hover {
-  border: 2px solid #000;
-  transform: scale(1.05);
-  border: 2px solid white;
-}
 h1, h2 {
   font-size: 1.25rem;
   font-weight: bold;
 }
 
+/* Mobile-Specific Adjustments */
+@media (max-width: 767px) {
+  nav {
+    padding: 0 5px; /* Reduce padding for mobile */
+  }
+  nav ul {
+    gap: 2px; /* Larger gap for touch targets */
+    justify-content: space-around;
+    width: 100%; /* Remove forced 100% width */
+  }
+  nav ul li {
+    font-size: 0.75rem; /* Smaller font size for mobile */
+    padding: 3px; /* Minimal padding for touch targets */
+  }
+  .siteName {
+    font-size: 1.1rem; /* Slightly smaller for mobile */
+  }
+}
 
-/**************OVERLAY DIV*******************************************************/
-/*********************************************************************/
-
+/* Rest of your existing CSS remains unchanged */
 .overlay  {
   display: flex;
   position: relative;
@@ -79,7 +91,7 @@ h1, h2 {
 }
 .delorean-sale {
   position: relative;
-    width: 100%;
+  width: 100%;
 }
 .delorean-image-index {
   width: 90%;
@@ -87,27 +99,24 @@ h1, h2 {
   display: block;
 }
 .delorean-image-index:hover {
-  transform: scale(1.1); /* Enlarges the image */
+  transform: scale(1.1);
   transition: transform 0.3s ease-in-out;
-  
-  
 }
 .text-overlay {
   position: absolute;
   top: 10px;
   left: 10px;
   color: #00b7eb;
-  
   background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
   border-radius: 5px;
 }
 .text-overlay ul {
   list-style: none; 
-    padding: 0;
-    margin: 0;
-    color: black; 
-    text-align: left;
+  padding: 0;
+  margin: 0;
+  color: black; 
+  text-align: left;
 }
 .text-overlay li {
   font-size: 18px;
@@ -115,15 +124,12 @@ h1, h2 {
   color: black; 
   text-shadow: 2px 2px 4px black;
 }
-
-
 .delorean-promo {
   font-size: 20px;
   font-weight: bold;
 }
-
 .own-delorean {
-  background-color: lightblue; ;
+  background-color: lightblue;
   color: black;
   padding: 7px 7px;
   border: none;
@@ -131,10 +137,8 @@ h1, h2 {
   font-family: Orbitron;
   font-size: 16px;
   font-weight: bold;
-  
   transition: background-color 0.3s ease, transform 0.2s ease; 
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); 
-  
 }
 .own-delorean:hover {
   background-color: lightblue;
@@ -145,37 +149,27 @@ h1, h2 {
   transform: scale(0.95); 
 }
 
-
-/*****Reviews Container **********************/
-/*********************************************************************/
 .review-container {
   max-width: 400px;
   padding: 15px;
-  
 }
 #delorean-reviews {
   font-size: 20px;
   font-weight: bold;
 }
 .reviews {
-  
   font-size: 14px;
   padding-left: 20px;
   list-style-type: disc;
-  }
+}
 .reviews li {
-  
   margin-left: 0px;
   margin-bottom: 10px;
 }
 
-/******UPGRADES CONTAINER*********************/
-/*********************************************************************/
-
 .upgrades {
   grid-column: 1/-1;
   justify-self: start;
-  
 }
 .item {
   display: flex;
@@ -186,7 +180,6 @@ h1, h2 {
 .item p {
   margin-top: 5px;
   margin-left: 15px;
-
 }
 .upgrade-container {
   display: grid;
@@ -195,7 +188,6 @@ h1, h2 {
   gap: 10px;
   justify-content: start;
   text-align: left;
-  
 }
 .image-container {
   background-color: #00b7eb; 
@@ -204,75 +196,59 @@ h1, h2 {
   width: 140px;
   height: 80px;
   text-align: center;
-
 }
 .image-container img {
   width: 50px;
   height: auto;
 }
-
 .image-container img:hover {
   box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
   transition: box-shadow 0.3s ease-in-out;
 }
 
-/**********************MEDIA QUERIES*********INDEX.EJS*************************************/
-/*********************************************************************/
-
 @media (min-width: 768px) { 
-  
   body {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
     background-image: url('/images/site/small_check.jpg');
-}
-  
+  }
   #wrapper {
-      border: 5px solid rgb(98, 177, 203);
-      padding: 10px; 
-      border-radius: 8px;       
-      width: 80%;
-      height: 80%;
-      justify-content: center;
-      background-color: white;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      z-index: 10;
-      margin: 0 auto;
-      margin-top: 15px;
-    }
-
-    .content-wrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  
-    .review-container {
-      order: 2;
-      
-    }
-
-    .upgrade-container {
-      order: 1;
-    }
-
-    
-    .reviews li {
-      padding-bottom: 15px;
-
-    }
-
-    #delorean-reviews {
-      margin-top: 0px;
-    }
-    .upgrades {
-      margin-bottom: 5px;
-    }
-  
+    border: 5px solid rgb(98, 177, 203);
+    padding: 10px; 
+    border-radius: 8px;       
+    width: 80%;
+    height: 80%;
+    justify-content: center;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .review-container {
+    order: 2;
+  }
+  .upgrade-container {
+    order: 1;
+  }
+  .reviews li {
+    padding-bottom: 15px;
+  }
+  #delorean-reviews {
+    margin-top: 0px;
+  }
+  .upgrades {
+    margin-bottom: 5px;
+  }
 }
 
 /********************** EJS VIEWS ******************* ****************************************************/
