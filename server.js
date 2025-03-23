@@ -39,6 +39,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute);
 
+// Trigger error route (for testing)
+app.use("/inv/trigger-error", inventoryRoute);
 
 
 
@@ -51,19 +53,40 @@ app.use(async (req, res, next) => {
 
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
+* Express Error Handler for 404
+* This is for handling file not found errors.
+*************************/
+app.use(async (req, res, next) => {
+  let nav = await utilities.getNav();
+  res.status(404).render("errors/error", {
+    title: "404 - Page Not Found",
+    message: "The page you are looking for doesn't exist.",
+    nav
+  });
+});
+
+
+/* ***********************
+* Express Error Handler for 500
+* This will handle the 500 errors, including the ones from `/inv/trigger-error`
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+
+  let status = err.status || 500; // Defaults to 500 if no status is set
+  let message = (status === 404) 
+    ? err.message 
+    : "Oh no! There was a crash. Maybe try a different route?";
+
+  res.status(status).render("errors/error", {
+    title: `${status} - Server Error`,
     message,
     nav
-  })
-})
+  });
+});
+
+
 
 
 /* ***********************

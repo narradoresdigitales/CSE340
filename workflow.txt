@@ -77,3 +77,7 @@ Finally, the navigation partial file will be edited to display the now dynamical
 It cannot be stressed enough, there are many moving parts. But each one carries out its task and allows the others to do their part. Together, they make the application work.
 
 When finished, the application should work, just as it did previously, but taking on a more professional approach, and an approach that uses the separation of task to allow an overall ease of maintenance and scalability.
+
+
+
+

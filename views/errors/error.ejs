@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
     <main>
-    <h1><%= title %></h1>
-    <img src="/images/upgrades/flame.jpg" alt="Error Flame"> 
-    <p><%- message %></p> <!-- Using unescaped code block to display the message -->
+        <h1><%= title %></h1>
+        <img src="/images/upgrades/flame.jpg" alt="Error Flame"> 
+        <p><%- message %></p> <!-- This displays the specific error message -->
+        
+        <!-- Provide different suggestions for 404 and 500 errors -->
+        <% if (title.startsWith("404")) { %>
+            <p>Sorry, the page you're looking for was not found. Check the URL or go back to the homepage.</p>
+        <% } else if (title.startsWith("500")) { %>
+            <p>We're experiencing some technical issues. Please try again later.</p>
+        <% } %>
+
+        <a href="/">Return to Home</a>
     </main>
 </body>
 </html>
