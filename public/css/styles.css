@@ -32,7 +32,7 @@ header a {
 }
 
 nav {
-  color: white;
+  color: red;
   background-color: black;
   display: flex;
   justify-content: space-around;
@@ -41,6 +41,11 @@ nav {
   box-sizing: border-box;
   padding: 0px 40px; 
   margin-bottom: 15px; 
+}
+
+nav a:active {
+  color: white;
+  outline:none;
 }
 nav ul {
   display: flex;
