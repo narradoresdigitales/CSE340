@@ -8,6 +8,7 @@
 
 body {
   font-family: "Orbitron", sans-serif; 
+  
 }
 
 header {
@@ -32,7 +33,7 @@ header a {
 }
 
 nav {
-  color: red;
+  color: white;
   background-color: black;
   display: flex;
   justify-content: space-around;
@@ -41,6 +42,13 @@ nav {
   box-sizing: border-box;
   padding: 0px 40px; 
   margin-bottom: 15px; 
+}
+
+nav a {
+  font-family: "Orbitron", sans-serif; /* Add this line to apply the font */
+  color: white; /* Maintain white color */
+  text-decoration: none; /* remove underline if needed */
+ 
 }
 
 nav a:active {
