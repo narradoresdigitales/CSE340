@@ -494,9 +494,6 @@ p.notice {
 }
 
 
-
-
-
 @media (min-width: 1024px) {
   /* Classification View */
   #inv-display li {
@@ -521,9 +518,8 @@ p.notice {
   }
 }
 
+/* ************************Login Container & Register */
 
-
-/* Login Container */
 .login-container {
   background: white;
   padding: 2rem;
@@ -531,10 +527,9 @@ p.notice {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 350px;
   text-align: center;
-  margin-bottom: 25px;
 }
 
-/* Heading */
+/* Headings */
 .login-container h1 {
   margin-bottom: 1rem;
   color: #333;
@@ -566,6 +561,22 @@ p.notice {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+/* Password Instructions */
+.password-instructions {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Show Password Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
 /* Submit Button */
 .btn {
   width: 100%;
@@ -583,7 +594,7 @@ p.notice {
   background: #0056b3;
 }
 
-/* Signup Text */
+/* Signup/Login Text */
 .signup-text {
   margin-top: 1rem;
   font-size: 0.9rem;
@@ -599,3 +610,39 @@ p.notice {
 .signup-text a:hover {
   text-decoration: underline;
 }
+
+/* Password Input Group */
+.password-group {
+  position: relative;
+}
+
+/* Wrapper for Password Field & Button */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 50px; /* Prevent text from being covered by button */
+}
+
+/* Show Password Button */
+#toggle-password {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+#toggle-password:hover {
+  background: #0056b3;
+}
+
