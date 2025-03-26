@@ -16,7 +16,7 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 /* ********************************************
 * Register Account
 * ********************************************* */
-router.post('/register', utilities.handleErrors(accountController.registerAccount))
+router.post("/register", utilities.handleErrors(accountController.registerAccount))
 
 
 

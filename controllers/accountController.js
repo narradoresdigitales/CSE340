@@ -1,3 +1,5 @@
+const accountModel = require('../models/account-model');
+
 const utilities = require('../utilities')
 
 /* ****************************************
