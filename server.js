@@ -36,6 +36,7 @@ app.use(session({
 
 //Express Messages Middleware
 app.use(require('connect-flash')())
+
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
@@ -73,10 +74,7 @@ app.use("/inv", inventoryRoute);
 app.use("/account", require("./routes/accountRoute"));
 // Trigger error route (for testing)
 
-// Trouble Shooting route // 
-console.log("Loading accountRoute...");
-app.use("/account", require("./routes/accountRoute"));
-console.log("accountRoute loaded.");
+
 
 
 
@@ -140,8 +138,6 @@ const host = process.env.HOST
  * Trouble Shooting
  * 
  *************************/
-
-
 app._router.stack.forEach((layer) => {
   if (layer.route) {
     console.log(layer.route.path);
