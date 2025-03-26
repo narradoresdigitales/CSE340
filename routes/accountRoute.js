@@ -13,6 +13,10 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 * Deliver Registration View
 * ********************************************* */
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
+/* ********************************************
+* Register Account
+* ********************************************* */
+router.post("/register", utilities.handleErrors(accountController.registerAccount))
 
 
 

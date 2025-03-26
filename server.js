@@ -15,6 +15,7 @@ const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require('./utilities');
 const session = require("express-session")
 const pool = require('./database') 
+const bodyParser = require("body-parser")
 
 
 /* ***********************
@@ -40,7 +41,8 @@ app.use(function(req, res, next){
   next()
 })
 
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 
 
@@ -68,8 +70,16 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome)) 
 // Inventory routes
 app.use("/inv", inventoryRoute);
-app.use("/account", require("./routes/accountRoute"))
+app.use("/account", require("./routes/accountRoute"));
 // Trigger error route (for testing)
+
+// Trouble Shooting route // 
+console.log("Loading accountRoute...");
+app.use("/account", require("./routes/accountRoute"));
+console.log("accountRoute loaded.");
+
+
+
 app.use("/inv/trigger-error", inventoryRoute);
 
 
@@ -125,6 +135,20 @@ app.use(async (err, req, res, next) => {
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+
+/* ***********************
+ * Trouble Shooting
+ * 
+ *************************/
+
+
+app._router.stack.forEach((layer) => {
+  if (layer.route) {
+    console.log(layer.route.path);
+  }
+});
+
+
 
 /* ***********************
  * Log statement to confirm server operation
