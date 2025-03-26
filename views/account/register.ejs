@@ -1,12 +1,10 @@
 
 <h1> <%- title %> </h1>
 
-
-
 <div class="login-container">
-    <h1>Register</h1>
+    
     <form action="/account/register" method="post">
-        
+        <p>ALL FIELDS ARE REQUIRED</p>
         <div class="input-group">
             <label for="first-name">First Name</label>
             <input type="text" id="first-name" name="account_firstname" placeholder="Enter your first name" required>
@@ -25,10 +23,12 @@
         <div class="input-group password-group">
             <label for="password">Password</label>
             <div class="password-wrapper">
-                <input type="password" name="account_password" id="pword" placeholder="Enter your password" required>
-                <button type="button" id="pswdBtn">Show</button>
+                <input type="password" name="account_password" id="pword" placeholder="Enter your password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                
             </div>
+            
             <p class="password-instructions">Password must be a minimum of 12 characters and include 1 capital letter, 1 number, and 1 special character.</p>
+            <button type="button" id="pswdBtn">Show</button>
         </div>
         
         <button type="submit" class="btn">Register</button>

@@ -536,30 +536,80 @@ p.notice {
 }
 
 /* Input Fields */
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+
+
+
+
 .input-group {
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .input-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .input-group input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.4);
 }
+
+/* Invalid input */
+input:required:invalid, input:focus:invalid {
+  background-image: url(/images/invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  border: 2px solid #e74c3c; /* Red border for invalid input */
+  color: #e74c3c; /* Optional: red text for invalid inputs */
+}
+
+/* Valid input */
+input:required:valid {
+  background-image: url(/images/valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  border: 2px solid #2ecc71; /* Green border for valid input */
+  color: black; /* Optional: green text for valid inputs */
+}
+
+
+
+
+
+
+
+
 
 /* Password Instructions */
 .password-instructions {
@@ -580,19 +630,49 @@ p.notice {
 /* Submit Button */
 .btn {
   width: 100%;
-  padding: 10px;
-  background: #007bff;
+  padding: 12px;
+  background: linear-gradient(135deg, #007bff, #0056b3);;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.2s, background 0.3s;
 }
 
 .btn:hover {
-  background: #0056b3;
+  background: linear-gradient(135deg, #0056b3, #004094);
+  transform: scale(1.02);
 }
+
+
+#pswdBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f0f0f0; /* Light gray background for subtle contrast */
+  color: #333; /* Dark gray text for readability */
+  border: 1px solid #ccc; /* Soft border */
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background 0.3s, transform 0.2s, border-color 0.3s;
+}
+
+#pswdBtn:hover {
+  background: #ddd; /* Slightly darker on hover */
+  border-color: #aaa;
+  transform: scale(1.05);
+}
+
+#pswdBtn:active {
+  background: #ccc;
+  transform: scale(0.98);
+}
+
 
 /* Signup/Login Text */
 .signup-text {
@@ -625,7 +705,7 @@ p.notice {
 
 .password-wrapper input {
   flex: 1;
-  padding-right: 50px; /* Prevent text from being covered by button */
+  padding-right: 75px; /* Prevent text from being covered by button */
 }
 
 /* Show Password Button */
@@ -633,16 +713,31 @@ p.notice {
   position: absolute;
   right: 10px;
   border: none;
-  background: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
-  padding: 5px 10px;
+  padding: 6px 12px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 0.9rem;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
 }
 
 #toggle-password:hover {
-  background: #0056b3;
+  background: linear-gradient(135deg, #0056b3, #004094);
+  transform: scale(1.05);
 }
+
+.error-message {
+  color: #d9534f; /* Bootstrap danger red */
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 1.5rem;
+  }
+}
+
 
