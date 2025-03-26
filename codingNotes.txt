@@ -1,0 +1,9 @@
+
+
+
+26MAR
+--HTML Forms learning activities // COMPLETE
+--Client-side Data Validation // COMPLETE
+--Novalidate // ATTEMPTED: bookmark saved, unable to implement
+
+** NEXT STEPS ** --Server-side Data Validation 
