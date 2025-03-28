@@ -19,12 +19,10 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:invId", invController.showVehicleDetail);
 
 router.get("/", invController.buildManagementView);
-
 router.get('/add-classification', invController.showAddClassification);
-
+router.post('/add-classification', invController.addClassification);
 router.get('/add-inventory', invController.showAddInventory);
-
-
+router.post('/add-inventory', invController.addInventory); 
 router.get('/trigger-error', errorController.throwError);
 
 module.exports = router;

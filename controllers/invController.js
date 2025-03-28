@@ -51,6 +51,7 @@ invCont.buildManagementView = async function(req, res, next) {
 invCont.showAddClassification = async function(req, res, next) {
   let nav = await utilities.getNav();
   res.render("inventory/addClassification", {
+      title: "Add Vehicle Classification",
       flash: req.flash('info'),
       nav, 
       errors: null,
@@ -60,11 +61,85 @@ invCont.showAddClassification = async function(req, res, next) {
 invCont.showAddInventory = async function(req, res, next) {
   let nav = await utilities.getNav();
   res.render("inventory/addInventory", {
+      title: "Add New Vehicle",
       flash: req.flash('info'),
       nav, 
       errors: null
   });
 }
+
+// Add a function to handle form submission and insertion into the database
+invCont.addClassification = async function(req, res, next) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;
+  const errors = [];
+
+  // Server-side validation
+  const regex = /^[a-zA-Z0-9]+$/;
+  if (!regex.test(classification_name)) {
+    errors.push({ msg: "Classification name cannot contain spaces or special characters." });
+  }
+
+  if (errors.length > 0) {
+    res.render("inventory/addClassification", {
+      title: "Add Vehicle Classification",
+      flash: null,
+      nav,
+      errors,
+    });
+  } else {
+    try {
+      await invModel.insertClassification(classification_name);
+      req.flash('info', 'Classification added successfully.');
+      nav = await utilities.getNav(); // Re-generate the navigation bar
+      res.redirect('/inv');
+    } catch (err) {
+      errors.push({ msg: err.message });
+      res.render("inventory/addClassification", {
+        title: "Add Vehicle Classification",
+        flash: null,
+        nav,
+        errors,
+      });
+    }
+  }
+};
+
+invCont.addInventory = async function(req, res, next) {
+  let nav = await utilities.getNav();
+  const { make, model, year } = req.body;
+  const errors = [];
+
+  // Server-side validation
+  if (!make || !model || !year) {
+    errors.push({ msg: "All fields are required." });
+  }
+
+  if (errors.length > 0) {
+    res.render("inventory/addInventory", {
+      title: "Add New Vehicle",
+      flash: null,
+      nav,
+      errors,
+    });
+  } else {
+    try {
+      await invModel.insertVehicle({ make, model, year });
+      req.flash('info', 'Vehicle added successfully.');
+      nav = await utilities.getNav(); // Re-generate the navigation bar
+      res.redirect('/inv');
+    } catch (err) {
+      errors.push({ msg: err.message });
+      res.render("inventory/addInventory", {
+        title: "Add New Vehicle",
+        flash: null,
+        nav,
+        errors,
+      });
+    }
+  }
+};
+
 
 
 
