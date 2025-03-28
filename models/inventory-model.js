@@ -54,11 +54,13 @@ async function getVehicleByInvId(inv_id) {
 // Function to insert a new classification
 async function insertClassification(classification_name) {
   try {
-    const sql = "INSERT INTO classifications (classification_name) VALUES ($1)";
-  const result = await db.query(sql, [classification_name])
-  return result;
-  }catch (error) {
-    console.error("insertClassification error: " + error)
+    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1)"
+    console.log("Executing query:", sql, "with values:", classification_name)
+    const result = await pool.query(sql, [classification_name])
+    console.log("Insert result:", result)
+    return result
+  } catch (error) {
+    console.error("insertClassification error:", error)
   }
 }
 
