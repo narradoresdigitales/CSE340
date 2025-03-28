@@ -9,8 +9,6 @@ async function getClassifications(){
 
 
 
-
-
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
@@ -53,10 +51,42 @@ async function getVehicleByInvId(inv_id) {
 }
 
 
+// Function to insert a new classification
+async function insertClassification(classification_name) {
+  try {
+    const sql = "INSERT INTO classifications (classification_name) VALUES ($1)";
+  const result = await db.query(sql, [classification_name])
+  return result;
+  }catch (error) {
+    console.error("insertClassification error: " + error)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+const insertVehicle = async function(vehicle) {
+  const { make, model, year } = vehicle;
+  const sql = "INSERT INTO public.inventory (make, model, year) VALUES ($1, $2, $3)";
+  const result = await pool.query(sql, [make, model, year]);
+  return result;
+};
+
+
+
+
 
 
 module.exports = {
   getClassifications, 
   getInventoryByClassificationId,
   getVehicleByInvId,
+  insertClassification,
+  insertVehicle,
 };
