@@ -38,5 +38,35 @@ invCont.showVehicleDetail = async function(req, res, next) {
   });
 };
 
+invCont.buildManagementView = async function(req, res, next) {
+  console.log("Building management view");
+  let nav = await utilities.getNav();
+  res.render("inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    errors: null,
+  })
+}
+
+invCont.showAddClassification = async function(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("inventory/addClassification", {
+      flash: req.flash('info'),
+      nav, 
+      errors: null,
+  });
+}
+
+invCont.showAddInventory = async function(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("inventory/addInventory", {
+      flash: req.flash('info'),
+      nav, 
+      errors: null
+  });
+}
+
+
+
 
 module.exports = invCont

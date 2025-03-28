@@ -132,7 +132,12 @@ app.use(async (err, req, res, next) => {
  * Values from .env (environment) file
  *************************/
 const port = process.env.PORT
-const host = process.env.HOST
+const host = process.env.HOST  
+
+
+
+
+
 
 /* ***********************
  * Trouble Shooting
@@ -144,6 +149,7 @@ app._router.stack.forEach((layer) => {
   }
 });
 
+console.log("SESSION_SECRET in Render:", process.env.SESSION_SECRET ? "Loaded" : "Undefined");
 
 
 /* ***********************

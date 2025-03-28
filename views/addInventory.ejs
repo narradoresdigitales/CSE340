@@ -1,0 +1,15 @@
+<body>
+    <h1>Add New Vehicle</h1>
+    <% if (typeof flash !== 'undefined') { %>
+        <div class="flash-message"><%= flash %></div>
+    <% } %>
+    <form action="/inv/add-inventory" method="POST">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" required>
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+        <button type="submit">Add Vehicle</button>
+    </form>
+</body>

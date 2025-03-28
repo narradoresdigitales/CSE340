@@ -18,6 +18,13 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 // Route to show vehicle details by inv_id
 router.get("/detail/:invId", invController.showVehicleDetail);
 
+router.get("/", invController.buildManagementView);
+
+router.get('/add-classification', invController.showAddClassification);
+
+router.get('/add-inventory', invController.showAddInventory);
+
+
 router.get('/trigger-error', errorController.throwError);
 
 module.exports = router;

@@ -1,0 +1,11 @@
+<body>
+    <h1>Add Vehicle Classification</h1>
+    <% if (typeof flash !== 'undefined') { %>
+        <div class="flash-message"><%= flash %></div>
+    <% } %>
+    <form action="/inv/add-classification" method="POST">
+        <label for="classification">Classification Name:</label>
+        <input type="text" id="classification" name="classification" required>
+        <button type="submit">Add Classification</button>
+    </form>
+</body>
