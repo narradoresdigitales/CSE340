@@ -79,15 +79,21 @@ h1, h2 {
 @media (max-width: 767px) {
   nav {
     padding: 0 5px; /* Reduce padding for mobile */
+    flex-direction: column;
+    align-items: center;
   }
   nav ul {
+    flex-direction: column;
+    align-items: center;
     gap: 2px; /* Larger gap for touch targets */
     justify-content: space-around;
     width: 100%; /* Remove forced 100% width */
   }
   nav ul li {
+    display: block;
     font-size: 0.75rem; /* Smaller font size for mobile */
     padding: 3px; /* Minimal padding for touch targets */
+    width: auto;
   }
   .siteName {
     font-size: 1.1rem; /* Slightly smaller for mobile */
@@ -389,12 +395,6 @@ p.notice {
 }
 
 
-
-
-
-
-
-
 /* Media Queries for Larger Screens */
 @media (min-width: 768px) {
   h1 {
@@ -527,6 +527,8 @@ p.notice {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 350px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Headings */
@@ -555,13 +557,10 @@ input:focus {
   outline: none;
 }
 
-
-
-
-
 .input-group {
   text-align: left;
   margin-bottom: 1.2rem;
+  
 }
 
 .input-group label {
@@ -602,13 +601,6 @@ input:required:valid {
   border: 2px solid #2ecc71; /* Green border for valid input */
   color: black; /* Optional: green text for valid inputs */
 }
-
-
-
-
-
-
-
 
 
 /* Password Instructions */
