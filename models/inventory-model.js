@@ -66,20 +66,12 @@ async function insertClassification(classification_name) {
 
 
 
-
-
-
-
-
-
-
 const insertVehicle = async function(vehicle) {
   const { make, model, year } = vehicle;
   const sql = "INSERT INTO public.inventory (make, model, year) VALUES ($1, $2, $3)";
   const result = await pool.query(sql, [make, model, year]);
   return result;
 };
-
 
 
 
