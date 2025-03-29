@@ -1,4 +1,4 @@
-<body>
+
     <h1>Add New Vehicle</h1>
     <% if (flash) { %>
         <div class="flash-message"><%= flash %></div>
@@ -10,31 +10,32 @@
             <% }); %>
         </div>
     <% } %>
-    <form action="/inv/add-inventory" method="POST">
-        <label for="classification">Classification:</label>
-        <select name="classification_id" id="classification">
+    <div class="login-container"> 
+        <form action="/inv/add-inventory" method="POST">
+            <label for="classification">Classification:</label>
+            <select name="classification_id" id="classification">
             <% classifications.forEach(function(classification) { %>
                 <option value="<%= classification.classification_id %>"><%= classification.classification_name %></option>
             <% }); %>
-        </select>
-        <label for="make">Make:</label>
-        <input type="text" id="make" name="inv_make" required>
-        <label for="model">Model:</label>
-        <input type="text" id="model" name="inv_model" required>
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="inv_year" required>
-        <label for="description">Description:</label>
-        <textarea id="description" name="inv_description" required></textarea>
-        <label for="image">Image URL:</label>
-        <input type="text" id="image" name="inv_image" required>
-        <label for="thumbnail">Thumbnail URL:</label>
-        <input type="text" id="thumbnail" name="inv_thumbnail" required>
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="inv_price" required>
-        <label for="miles">Miles:</label>
-        <input type="number" id="miles" name="inv_miles" required>
-        <label for="color">Color:</label>
-        <input type="text" id="color" name="inv_color" required>
-        <input type="submit" value="Add Vehicle">
+            </select>
+            <label for="make">Make:</label>
+            <input type="text" id="make" name="inv_make" required value="<%= locals.inv_make %>">>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="inv_model" required value="<%= locals.inv_model %>">>
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="inv_year" required value="<%= locals.inv_year %>">>
+            <label for="description">Description:</label>
+            <textarea id="description" name="inv_description" required value="<%= locals.inv_description %>"></textarea>></textarea>
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="inv_image" required value="<%= locals.inv_image %>">>
+            <label for="thumbnail">Thumbnail URL:</label>
+            <input type="text" id="thumbnail" name="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="inv_price" required value="<%= locals.inv_price %>">>
+            <label for="miles">Miles:</label>
+            <input type="number" id="miles" name="inv_miles" required value="<%= locals.inv_miles %>">>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="inv_color" required value="<%= locals.inv_color %>">>
+            <input type="submit" value="Add Vehicle">
     </form>
-</body>
+    </div>
