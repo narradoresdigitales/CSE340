@@ -5,12 +5,7 @@ const invController = require("../controllers/invController")
 const errorController = require('../controllers/errorController');
 
 
-// Debugging - Log when route is hit
 
-router.get("/detail/:invId", (req, res, next) => {
-    console.log(`Route hit: /inv/detail/${req.params.invId}`);
-    next();
-});
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -21,7 +16,7 @@ router.get("/detail/:invId", invController.showVehicleDetail);
 router.get("/", invController.buildManagementView);
 router.get('/add-classification', invController.showAddClassification);
 router.post('/add-classification', invController.addClassification);
-router.get('/add-inventory', invController.showAddInventory);
+router.get('/add-inventory', invController.addInventory);
 router.post('/add-inventory', invController.addInventory); 
 router.get('/trigger-error', errorController.throwError);
 
