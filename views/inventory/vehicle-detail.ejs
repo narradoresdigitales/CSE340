@@ -1,27 +1,33 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
 
-  <!-- Vehicle Details -->
+<!-- Vehicle Details -->
 <div class="vehicle-detail">
-  
+<% if (vehicle && vehicle.inv_image && vehicle.inv_make && vehicle.inv_model) { %>
   <img src="/<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %> on CSE Motors">
-    <div class="vehicle.info"> 
-      <p class="info-header"><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details </p>
+  <div class="vehicle-info"> 
+    <p class="info-header"><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details </p>
+    <% if (vehicle.inv_description) { %>
       <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
+    <% } %>
+    <% if (vehicle.inv_price) { %>
       <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+    <% } %>
+    <% if (vehicle.inv_color) { %>
       <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
+    <% } %>
+    <% if (vehicle.inv_miles) { %>
       <p><strong>Miles:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %> miles</p>
+    <% } %>
   </div>
+<% } else { %>
+  <p>Vehicle details not available.</p>
+<% } %>
 </div>
 
+<%# messages() %>
 
-
-
-    <%# messages() %>
-
-    <!--Inventory Items Display-->
-  
-
+<!--Inventory Items Display-->

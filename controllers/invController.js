@@ -21,18 +21,26 @@ invCont.buildByClassificationId = async function (req, res, next) {
 };
 
 invCont.showVehicleDetail = async function(req, res, next) {
-  const inv_id = req.params.invId;
-  const vehicle = await invModel.getVehicleByInvId(inv_id);
-  console.log("Vehicle Data in Controller:", vehicle);
-  const grid = await utilities.buildGetVehicleByIdGrid([vehicle]);
-  let nav = await utilities.getNav();
-  res.render("inventory/vehicle-detail", {
-    title: `${vehicle.inv_year} ${vehicle.inv_model} ${vehicle.inv_make}`,
-    vehicle,
-    nav,
-    grid,
-    errors: null,
-  });
+  try {
+    const inv_id = req.params.invId;
+    const vehicle = await invModel.getVehicleByInvId(inv_id);
+    console.log("Vehicle Data in Controller:", vehicle);
+    if (!vehicle) throw new Error('Vehicle not found');
+    
+    const grid = await utilities.buildGetVehicleByIdGrid([vehicle]);
+    let nav = await utilities.getNav();
+    
+    res.render("inventory/vehicle-detail", {
+      title: `${vehicle.inv_year} ${vehicle.inv_model} ${vehicle.inv_make}`,
+      vehicle,
+      nav,
+      grid,
+      errors: null,
+    });
+  } catch (error) {
+    console.error('Error in showVehicleDetail:', error);
+    res.redirect('/');
+  }
 };
 
 invCont.buildManagementView = async function(req, res, next) {
