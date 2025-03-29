@@ -59,14 +59,21 @@ invCont.showAddClassification = async function(req, res, next) {
 }
 
 invCont.showAddInventory = async function(req, res, next) {
-  let nav = await utilities.getNav();
-  res.render("inventory/addInventory", {
-      title: "Add New Vehicle",
-      flash: req.flash('info'),
-      nav, 
-      errors: null
-  });
-}
+  try {
+    let nav = await utilities.getNav();
+    let classifications = await invModel.getClassifications(); // Fetch classifications
+    res.render("inventory/addInventory", {
+        title: "Add New Vehicle",
+        flash: req.flash('info'),
+        nav, 
+        errors: null,
+        classifications: classifications.rows // Pass classifications to the template
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 // Add a function to handle form submission and insertion into the database
 invCont.addClassification = async function(req, res, next) {
