@@ -17,10 +17,12 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 /* ********************************************
 * Register Account
 * ********************************************* */
-router.post("/register", 
+router.post(
+    "/register", 
     regValidate.registrationRules(),
     regValidate.checkRegData,    
-    utilities.handleErrors(accountController.registerAccount))
+    utilities.handleErrors(accountController.registerAccount)
+)
 
 
 
