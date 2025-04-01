@@ -8,7 +8,9 @@ const regValidate = require('../utilities/account-validation')
 /* ********************************************
 * Deliver Login View
 * ********************************************* */
-router.get("/login", utilities.handleErrors(accountController.buildLogin)) 
+router.get(
+    "/login", 
+    utilities.handleErrors(accountController.buildLogin)) 
 
 /*
 // Process the login request
@@ -34,7 +36,12 @@ router.post(
     utilities.handleErrors(accountController.registerAccount))
 
 
-
+/* ********************************************
+* Account Management View
+* ********************************************* */
+router.get(
+    "/accountManagement", 
+    utilities.handleErrors(accountController.buildAccountManagement))
 
 
 module.exports = router 
