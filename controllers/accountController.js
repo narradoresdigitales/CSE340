@@ -96,9 +96,11 @@ async function registerAccount(req, res) {
 async function accountLogin(req, res) {
     let nav = await utilities.getNav()
     const { account_email, account_password } = req.body
+    console.log("Login attempt for:", account_email)
     const accountData = await accountModel.getAccountByEmail(account_email)
     if (!accountData) {
         req.flash("notice", "Please check your credentials and try again.")
+        console.log("No account found for:", account_email)
         return res.status(400).render("account/login", {
             title: "Login",
             nav,
@@ -108,6 +110,7 @@ async function accountLogin(req, res) {
     }
     try {
         if (await bcrypt.compare(account_password, accountData.account_password)) {
+            console.log("Password match for:", account_email)
             delete accountData.account_password
             const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
             if (process.env.NODE_ENV === 'development') {
@@ -115,9 +118,11 @@ async function accountLogin(req, res) {
             } else {
                 res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
             }
-            return res.redirect("/account/accountManagement")
+            console.log("Redirecting to account management for:", account_email)
+            return res.redirect("/account/accountManagement/")
         } else {
             req.flash("notice", "Please check your credentials and try again.")
+            console.log("Password mismatch for:", account_email)
             return res.status(400).render("account/login", {
                 title: "Login",
                 nav,
@@ -142,7 +147,7 @@ async function buildAccountManagement(req, res, next) {
         title: "Account Management",
         nav,
         errors: null,
-        flash: req.flash('notice')
+        
     })
 }
 

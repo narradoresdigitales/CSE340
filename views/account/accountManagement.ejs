@@ -1,20 +1,6 @@
-<h1><%- title %></h1>
+<h1>Account Management</h1>
 <%- messages() %>
 
 <div class="account-management-container">
-    <p>You're logged in</p>
-    <% if (flash && flash.length > 0) { %>
-        <% flash.forEach(function(message){ %>
-            <div class="flash-message"><%= message %></div>
-        <% }); %>
-    <% } %>
-    <% if (errors && errors.length > 0) { %>
-        <div class="errors">
-            <ul>
-                <% errors.forEach(function(error){ %>
-                    <li><%= error.msg %></li>
-                <% }); %>
-            </ul>
-        </div>
-    <% } %>
+    
 </div>
