@@ -90,48 +90,68 @@ async function registerAccount(req, res) {
 /* ****************************************
  *  Process login request
  * ************************************ */
+/* ****************************************
+ *  Process login request
+ * ************************************ */
 async function accountLogin(req, res) {
     let nav = await utilities.getNav()
     const { account_email, account_password } = req.body
+    console.log("Login attempt for:", account_email)
     const accountData = await accountModel.getAccountByEmail(account_email)
     if (!accountData) {
         req.flash("notice", "Please check your credentials and try again.")
-        res.status(400).render("account/login", {
-        title: "Login",
-        nav,
-        errors: null,
-        account_email,
-    })
-        return
-    }
-    try {
-        if (await bcrypt.compare(account_password, accountData.account_password)) {
-        delete accountData.account_password
-        const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-        if(process.env.NODE_ENV === 'development') {
-          res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-        } else {
-          res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
-        }
-        return res.redirect("/account/")
-    }
-        else {
-        req.flash("message notice", "Please check your credentials and try again.")
-        res.status(400).render("account/login", {
+        console.log("No account found for:", account_email)
+        return res.status(400).render("account/login", {
             title: "Login",
             nav,
             errors: null,
             account_email,
         })
     }
+    try {
+        if (await bcrypt.compare(account_password, accountData.account_password)) {
+            console.log("Password match for:", account_email)
+            delete accountData.account_password
+            const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+            if (process.env.NODE_ENV === 'development') {
+                res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+            } else {
+                res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+            }
+            console.log("Redirecting to account management for:", account_email)
+            return res.redirect("/account/accountManagement/")
+        } else {
+            req.flash("notice", "Please check your credentials and try again.")
+            console.log("Password mismatch for:", account_email)
+            return res.status(400).render("account/login", {
+                title: "Login",
+                nav,
+                errors: null,
+                account_email,
+            })
+        }
     } catch (error) {
+        console.error("Error during login:", error)
         throw new Error('Access Forbidden')
     }
+}
+
+/* ****************************************
+* Deliver account management view
+* ***************************************** */
+async function buildAccountManagement(req, res, next) {
+    let nav = await utilities.getNav()
+
+    req.flash('notice', "You are logged in.")
+    res.render("account/accountManagement", {
+        title: "Account Management",
+        nav,
+        errors: null,
+        
+    })
 }
 
 
 
 
-
-
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }

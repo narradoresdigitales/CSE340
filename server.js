@@ -79,15 +79,7 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute);
 app.use("/account", require("./routes/accountRoute"));
 // Trigger error route (for testing)
-
-
-
-
-
 app.use("/inv/trigger-error", inventoryRoute);
-
-
-
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
