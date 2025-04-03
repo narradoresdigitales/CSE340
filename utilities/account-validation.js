@@ -121,4 +121,35 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
 
+
+validate.checkAccountType = async (req, res, next) => {
+  try {
+    const accountId = req.user.id; // Assuming user ID is stored in req.user
+    const account = await accountModel.getAccountById(accountId);
+    if (!account) {
+      console.error('Account not found');
+      throw new Error('Account not found');
+    }
+
+    const accountType = account.account_type; // Assuming account has a `account_type` field
+
+    if (accountType === 'Admin' || accountType === 'Employee') {
+      // Allow modification of the inventory for Admin or Employee
+      next();
+    } else {
+      console.error('Forbidden: You do not have the required permissions to modify the inventory.');
+      res.status(403).json({ message: 'Forbidden: You do not have the required permissions to modify the inventory.' });
+    }
+  } catch (error) {
+    console.error('Error checking account type:', error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
+
+
+
+
+
 module.exports = validate
