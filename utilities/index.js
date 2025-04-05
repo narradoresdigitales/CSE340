@@ -96,6 +96,21 @@ Util.buildGetVehicleByIdGrid = async function(data) {
   return grid;
 };
 
+Util.buildClassificationList = async function(data) {
+  let list = '<select name="classification_id" id="classificationList" required>';
+  list += '<option value="">Choose a classification</option>';
+  data.forEach(classification => {
+    list += `<option value="${classification.classification_id}">${classification.classification_name}</option>`;
+  });
+  list += '</select>';
+  return list;
+};
+
+
+
+
+
+
 
 
 /* ****************************************

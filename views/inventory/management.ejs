@@ -1,5 +1,3 @@
-
-
 <div>
     <% if (title) { %>
         <h1><%= title %></h1>
@@ -11,8 +9,21 @@
         <p>Options:</p>
         <ul>
             <li><a href="/inv/add-classification">Add New Classification</a></li>
-            <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
-        
+            <li><a href="/inv/add-inventory">Add New Vehicle</a></li>        
         </ul>
     </section>
 </div>
+
+<h2>Manage Inventory</h2>
+<p>Choose a classification to see those inventory items</p>
+<%- classificationSelect %>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>Javascript must be enabled to use this page.</noscript>
+
+<script>
+    console.log("Test script loaded");
+  </script>
+
+<script src="/js/inventory.js"></script>

@@ -2,7 +2,8 @@
 const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
-const errorController = require('../controllers/errorController');
+const errorController = require('../controllers/errorController')
+utilities = require('../utilities')
 
 
 
@@ -14,8 +15,16 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:invId", invController.showVehicleDetail);
 
 router.get("/", invController.buildManagementView);
+
 router.get('/add-classification', invController.showAddClassification);
 router.post('/add-classification', invController.addClassification);
+
+router.get(
+    "/getInventory/:classification_id",
+    utilities.handleErrors(invController.getInventoryJSON)
+  );
+  
+
 router.get('/add-inventory', invController.addInventory);
 router.post('/add-inventory', invController.addInventory); 
 router.get('/trigger-error', errorController.throwError);
