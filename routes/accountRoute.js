@@ -42,6 +42,7 @@ router.post(
 * ********************************************* */
 router.get(
     "/accountManagement", 
+    utilities.checkLogin, 
     utilities.handleErrors(accountController.buildAccountManagement))
 
 

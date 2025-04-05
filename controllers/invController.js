@@ -47,13 +47,12 @@ invCont.showVehicleDetail = async function(req, res, next) {
 invCont.buildManagementView = async function(req, res, next) {
   console.log("Building management view");
   let nav = await utilities.getNav();
-  const classifications = await invModel.getClassifications();
-  const classificationSelect = await utilities.buildClassificationList(classifications.rows); // <-- fix here
+
   res.render("inventory/management", {
     title: "Vehicle Management",
     nav,
     errors: null,
-    classificationSelect
+
   });
 };
 
@@ -157,33 +156,6 @@ invCont.addClassification = async function(req, res, next) {
 };
 
 
-/* ***************************
- *  Return Inventory by Classification As JSON
- * ************************** */
-/* ***************************
- *  Return Inventory by Classification As JSON
- * ************************** */
-
-
-// Handle request to fetch inventory by classification ID
-invCont.getInventoryJSON = async (req, res, next) => {
-  const classification_id = parseInt(req.params.classification_id, 10);
-  if (isNaN(classification_id)) {
-    return res.status(400).json({ error: "Invalid classification_id" });
-  }
-  try {
-    const invData = await invModel.getInventoryByClassificationId(classification_id);
-    if (invData.length > 0) {
-      return res.json(invData);
-    } else {
-      return res.status(404).json({ error: "No inventory found for this classification" });
-    }
-  } catch (error) {
-    next(error); // Pass the error to the error handler
-  }
-};
-
-module.exports = invCont;
 
 
 
