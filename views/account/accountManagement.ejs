@@ -1,6 +1,15 @@
 <h1>Account Management</h1>
 <%- messages() %>
+<h2>Manage Inventory</h2>
+<p>Choose a classification to see those inventory items.</p>
+<select id="classificationList">
+    <option value="1">Classification 1</option>
+    <option value="2">Classification 2</option>
+    <!-- Add more options as needed -->
+</select>
 
-<div class="account-management-container">
-    
-</div>
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page</noscript>
+
+<script src="/js/inventory.js"></script>
