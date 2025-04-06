@@ -1,16 +1,10 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h1><%= title %></h1>
+<% } %>
 
+<!-- Inventory Items Display -->
+<%- grid %>
 
-
-
-    <!--Message Block-->
-
-    <%# messages() %>
-
-    <!--Inventory Items Display-->
-    <%- grid %>
+<!-- Optional: Message Block for feedback (if you want to display messages dynamically) -->
+<%# messages() %>
 
