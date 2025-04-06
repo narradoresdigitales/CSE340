@@ -8,13 +8,16 @@ const invCont = {};
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId;
-  try {
-    const data = await invModel.getInventoryByClassificationId(classification_id);
-    req.inventoryData = data;  // Store data for the next handler
-    next();  // Pass control to the next middleware/route handler
-  } catch (error) {
-    next(error);  // Pass error to error handling middleware
-  }
+  const data = await invModel.getInventoryByClassificationId(classification_id);
+  const grid = await utilities.buildClassificationGrid(data);
+  let nav = await utilities.getNav();
+  const className = data[0].classification_name;
+  res.render("./inventory/classification", {
+    title: className + " vehicles",
+    nav,
+    grid,
+    errors: null,
+  });
 };
 
 
@@ -183,7 +186,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 };
 
-module.exports = invCont;
+
 
 
 
