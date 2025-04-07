@@ -3,7 +3,7 @@
 
 <div class="account-management-container">
    
-        <p>Here you can view, reset, or delete user accounts. These actions are available only to employees and managers.</p>
+        <p class="management-view">Here you can view, reset, or delete user accounts. These actions are available only to employees and managers.</p>
     
         <table class="account-table">
         <thead>
@@ -25,10 +25,10 @@
                 <td>
                 <form action="/account/reset/<%= account.account_id %>" method="POST">
                     <input type="password" name="account_password" placeholder="Enter new password" required> 
-                    <button type="submit">Reset Password</button>
+                    <button type="submit" class="action-btn">Reset Password</button>
                 </form>
                 <form action="/account/delete/<%= account.account_id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
-                    <button type="submit" name="account_password" class="delete-btn">Delete Account</button>
+                    <button type="submit" name="account_password" class="action-btn">Delete Account</button>
                 </form>
                 </td>
             </tr>

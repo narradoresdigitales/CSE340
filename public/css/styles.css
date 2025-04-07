@@ -769,6 +769,42 @@ input:required:valid {
 
 /* Styles for New features added to accountManagement.ejs */
 
+.account-management {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+
+
+.management-view {
+  font-size: 1.2rem;  /* Increase font size for better readability */
+  line-height: 1.6;   /* Add more space between lines for clarity */
+  color: #333;        /* Dark gray color for text for better contrast */
+  background-color: #f4f4f4;  /* Light background to highlight the paragraph */
+  padding: 15px;      /* Add padding around the paragraph */
+  border-radius: 8px; /* Slightly rounded corners for a modern look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 20px; /* Space below the paragraph */
+}
+
+.management-view strong {
+  font-weight: bold; /* Make text inside <strong> bold */
+  color: #007BFF;    /* Add a color for strong emphasis */
+}
+
+.management-view a {
+  text-decoration: none;  /* Remove underline from links */
+  color: #007BFF;         /* Link color */
+}
+
+.management-view a:hover {
+  text-decoration: underline; /* Add underline on hover for links */
+  color: #0056b3;            /* Darker color on hover */
+}
+
+
 .account-table {
   width: 100%;
   border-collapse: collapse;
@@ -786,17 +822,93 @@ input:required:valid {
 }
 
 .action-btn {
-  padding: 8px 12px;
-  background-color: #007BFF;
+  padding: 12px 20px; /* Increased vertical padding and more horizontal space */
+  margin: 10px 10px;
+  background-color: #007BFF; /* Primary button color */
   color: white;
-  border: none;
+  border: 1px solid #007BFF; /* Border to match the button's color */
+  border-radius: 8px; /* Subtle rounded corners */
+  font-size: 16px; /* Adjusted font size for readability */
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Soft shadow for depth */
 }
 
 .action-btn:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight raise effect on hover */
 }
 
+.action-btn:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Focus ring for accessibility */
+}
+
+.action-btn:active {
+  background-color: #004085; /* Even darker blue when pressed */
+  transform: translateY(0); /* Button "press" effect */
+}
+
+/* Media Queries for 768px screens */
+@media (max-width: 768px) {
+  /* Table container should allow horizontal scrolling */
+  .table-container {
+    overflow-x: auto; /* Add horizontal scroll */
+    -webkit-overflow-scrolling: touch; /* Improve scroll experience on iOS */
+  }
+
+  /* Style the table for smaller screens */
+  table {
+    width: 100%;
+    min-width: 600px; /* Ensure the table is large enough to display content */
+  }
+
+  th, td {
+    padding: 8px 10px; /* Reduce padding for smaller screens */
+  }
+
+  th {
+    font-size: 1rem; /* Smaller font size for table headers */
+  }
+
+  td {
+    font-size: 0.9rem; /* Smaller font size for table data */
+  }
+
+  /* Adjusting the table layout for mobile screens */
+  table, th, td {
+    display: block; /* Turn table into block-level elements */
+  }
+
+  th {
+    display: none; /* Hide table headers for smaller screens */
+  }
+
+  tr {
+    margin-bottom: 10px; /* Space between rows */
+  }
+
+  td {
+    display: block;
+    text-align: right; /* Right-align the text for better readability */
+    padding-left: 50%; /* Add space before data for labels */
+    position: relative;
+  }
+
+  td::before {
+    /* Add "labels" for each table row item on smaller screens */
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+  }
+
+  /* For each table row, we use the data-label attribute to provide label text */
+  td[data-label="Name"]::before { content: "Name"; }
+  td[data-label="Email"]::before { content: "Email"; }
+  td[data-label="Actions"]::before { content: "Actions"; }
+}
 
 
 
