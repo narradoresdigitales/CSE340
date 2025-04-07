@@ -767,3 +767,37 @@ input:required:valid {
 }
 
 
+/* Styles for New features added to accountManagement.ejs */
+
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.account-table th, .account-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.account-table th {
+  background-color: #f4f4f4;
+}
+
+.action-btn {
+  padding: 8px 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+

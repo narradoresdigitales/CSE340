@@ -1,3 +1,5 @@
+console.log('script.js loaded')
+
 document.addEventListener('DOMContentLoaded', function () {
     // Get the button element by ID (no need for the '#')
     const pswdBtn = document.getElementById("pswdBtn");
