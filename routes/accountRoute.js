@@ -44,6 +44,12 @@ router.get(
     "/accountManagement", 
     utilities.handleErrors(accountController.buildAccountManagement))
 
+router.get('/reset/:account_id', accountController.resetPassword) 
+
+router.post('/reset/:account_id', accountController.resetPassword)
+
+router.post('/delete/:account_id', accountController.deleteAccount)
+
 
 module.exports = router 
 

@@ -87,9 +87,7 @@ async function registerAccount(req, res) {
     }
 }
 
-/* ****************************************
- *  Process login request
- * ************************************ */
+
 /* ****************************************
  *  Process login request
  * ************************************ */
@@ -140,18 +138,103 @@ async function accountLogin(req, res) {
 * Deliver account management view
 * ***************************************** */
 async function buildAccountManagement(req, res, next) {
-    let nav = await utilities.getNav()
+    let nav = await utilities.getNav(); // Gets nav links
 
-    req.flash('notice', "You are logged in.")
-    res.render("account/accountManagement", {
+    try {
+      const accounts = await accountModel.getAllAccounts(); // ✅ Tries to get all accounts
+
+        req.flash('notice', "You are logged in.");
+        res.render("account/accountManagement", {
         title: "Account Management",
         nav,
         errors: null,
-        
-    })
+        accounts, // ✅ Passes accounts array to your EJS file
+        loggedIn: req.session.loggedin,       // ✅ Add this
+        account_type: req.session.account_type    // ✅ And this
+
+    });
+    } catch (error) {
+      next(error); // ✅ If something goes wrong, sends it to the error-handling middleware
+    }
+} 
+
+// Reset password logic
+// In your `accountController.js`
+// resetPassword method in accountController.js
+async function resetPassword(req, res, next)  {
+    try {
+        const accountId = req.params.account_id; // Ensure you're getting the accountId from the URL
+        const newPassword = req.body.account_password; // Ensure you're using the correct key here
+
+        // Hash the new password before saving it
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update the password in the database
+        await accountModel.updatePassword(accountId, hashedPassword);
+
+        // Flash success message and redirect to account management page
+        req.flash('notice', 'Password has been successfully reset.');
+        res.redirect('/account/accountManagement'); // Redirect to Account Management page
+    } catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).send("Internal Server Error");
+    }
+};
+
+async function deleteAccount(req, res, next) {
+    try {
+        const accountId = req.params.account_id;
+
+        // Perform delete operation in the database
+        await accountModel.deleteAccount(accountId);
+
+        // Flash success message and redirect
+        req.flash('notice', 'Account has been successfully deleted.');
+        res.redirect('/account/accountManagement'); // Redirect to Account Management page
+    } catch (error) {
+        console.error("Error deleting account:", error);
+        res.status(500).send("Internal Server Error");
+    }
 }
 
 
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }
+
+
+
+// Render the password reset form (GET route)
+async function showResetPasswordForm(req, res, next) {
+    try {
+        const accountId = req.params.account_id;  // Get the account ID from the URL
+        const account = await accountModel.findById(accountId); // Fetch account details by ID
+
+        if (!account) {
+            req.flash('error', 'Account not found');
+            return res.redirect('/account/accountManagement');
+        }
+
+        // Render the reset password form and pass the account ID to the view
+        res.render('account/resetPassword', { accountId });
+    } catch (error) {
+        console.error("Error fetching account details:", error);
+        req.flash('error', 'An error occurred while loading the reset password form.');
+        res.redirect('/account/accountManagement');
+    }
+}
+
+
+// Controller to render the reset password page
+async function showResetPasswordPage(req, res, next) {
+    try {
+      const accountId = req.params.account_id;  // Retrieve account ID from the URL
+      res.render('account/resetPassword', { accountId: accountId });  // Render the form
+    } catch (error) {
+        console.error("Error showing reset password page:", error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, resetPassword, showResetPasswordForm, showResetPasswordPage, deleteAccount }
