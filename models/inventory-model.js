@@ -83,6 +83,18 @@ const insertVehicle = async function(vehicle) {
 
 
 
+// Function to get classifications for the edit form
+async function getClassificationsForEditForm() {
+  const result = await pool.query('SELECT * FROM public.classification ORDER BY classification_name');
+  return result.rows; // Return only the rows (array of classifications)
+}
+
+
+
+
+
+
+
 
 module.exports = {
   getClassifications, 
@@ -90,4 +102,5 @@ module.exports = {
   getVehicleByInvId,
   insertClassification,
   insertVehicle,
+  getClassificationsForEditForm
 };
