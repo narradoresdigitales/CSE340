@@ -1,0 +1,36 @@
+
+<h1>Edit Vehicle</h1>
+<% if (flash) { %>
+    <div class="flash-message"><%= flash %></div>
+<% } %>
+<% if (errors) { %>
+    <div class="error-messages">
+        <% errors.forEach(function(error) { %>
+            <p><%= error.msg %></p>
+        <% }); %>
+    </div>
+<% } %>
+<div class="login-container"> 
+    <form action="/inv/update" method="POST">
+        </select>
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="inv_make" required value="<%=inv_make %>">
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="inv_model" required value="<%=inv_model %>">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="inv_year" required value="<%=inv_year %>">
+        <label for="description">Description:</label>
+        <textarea id="description" name="inv_description" required value="<%=inv_description %>"></textarea>>
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="inv_image" required value="<%=inv_image %>">
+        <label for="thumbnail">Thumbnail URL:</label>
+        <input type="text" id="thumbnail" name="inv_thumbnail" required value="<%=inv_thumbnail %>">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="inv_price" required value="<%=inv_price %>">
+        <label for="miles">Miles:</label>
+        <input type="number" id="miles" name="inv_miles" required value="<%=inv_miles %>">
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="inv_color" required value="<%=inv_color %>">
+        <input type="submit" name="submit" value="Update Vehicle">
+</form>
+</div>

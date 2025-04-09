@@ -21,9 +21,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
 };
 
 
-
-
-
 invCont.showVehicleDetail = async function(req, res, next) {
   try {
     const inv_id = req.params.invId;
@@ -51,7 +48,7 @@ invCont.buildManagementView = async function(req, res, next) {
   console.log("Building management view");
   let nav = await utilities.getNav();
   const classifications = await invModel.getClassifications();
-  const classificationSelect = await utilities.buildClassificationList(classifications.rows); // <-- fix here
+  const classificationSelect = await utilities.buildClassificationList(classifications.rows); 
   res.render("inventory/management", {
     title: "Vehicle Management",
     nav,
@@ -160,14 +157,10 @@ invCont.addClassification = async function(req, res, next) {
 };
 
 
+
 /* ***************************
  *  Return Inventory by Classification As JSON
  * ************************** */
-/* ***************************
- *  Return Inventory by Classification As JSON
- * ************************** */
-
-
 // Handle request to fetch inventory by classification ID
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id, 10);
@@ -176,7 +169,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
   try {
     const invData = await invModel.getInventoryByClassificationId(classification_id);
-    if (invData.length > 0) {
+      if (invData.length > 0) {
       return res.json(invData);
     } else {
       return res.status(404).json({ error: "No inventory found for this classification" });
@@ -186,7 +179,36 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 };
 
-
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.editInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id)
+  let nav = await utilities.getNav()
+  const itemData = await invModel.getVehicleByInvId(inv_id)
+  const classifications = await invModel.getClassificationsForEditForm();
+  const classificationSelect = await utilities.buildClassificationList(classifications, itemData.classification_id)
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+  
+  res.render("./inventory/edit-inventory", {
+    title: "Edit " + itemName,
+    flash:req.flash('Drink more yerba mate.'),  
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_description: itemData.inv_description,
+    inv_image: itemData.inv_image,
+    inv_thumbnail: itemData.inv_thumbnail,
+    inv_price: itemData.inv_price,
+    inv_miles: itemData.inv_miles,
+    inv_color: itemData.inv_color,
+    classification_id: itemData.classification_id
+  })
+}
 
 
 
