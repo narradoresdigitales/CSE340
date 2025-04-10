@@ -110,6 +110,10 @@ async function accountLogin(req, res) {
         if (await bcrypt.compare(account_password, accountData.account_password)) {
             console.log("Password match for:", account_email)
             delete accountData.account_password
+
+        // Store account_type in the session
+        req.session.account_type = accountData.account_type;
+
             const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
             if (process.env.NODE_ENV === 'development') {
                 res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
@@ -138,33 +142,33 @@ async function accountLogin(req, res) {
 * Deliver account management view
 * ***************************************** */
 async function buildAccountManagement(req, res, next) {
-    let nav = await utilities.getNav(); // Gets nav links
+    let nav = await utilities.getNav(); 
+
+    console.log("Account Type from Session: ", req.session.account_type);  // Log the session value
 
     try {
-      const accounts = await accountModel.getAllAccounts(); // ✅ Tries to get all accounts
+        const accounts = await accountModel.getAllAccounts(); 
 
         req.flash('notice', "You are logged in.");
+        console.log("Logged-in user account type: ", req.session.account_type);
         res.render("account/accountManagement", {
         title: "Account Management",
         nav,
         errors: null,
-        accounts, // ✅ Passes accounts array to your EJS file
-        loggedIn: req.session.loggedin,       // ✅ Add this
-        account_type: req.session.account_type    // ✅ And this
-
+        accounts, 
+        loggedIn: req.session.loggedin,      
+        account_type: req.session.account_type   
     });
     } catch (error) {
-      next(error); // ✅ If something goes wrong, sends it to the error-handling middleware
+      next(error); // 
     }
 } 
 
 // Reset password logic
-// In your `accountController.js`
-// resetPassword method in accountController.js
 async function resetPassword(req, res, next)  {
     try {
-        const accountId = req.params.account_id; // Ensure you're getting the accountId from the URL
-        const newPassword = req.body.account_password; // Ensure you're using the correct key here
+        const accountId = req.params.account_id; 
+        const newPassword = req.body.account_password; 
 
         // Hash the new password before saving it
         const hashedPassword = await bcrypt.hash(newPassword, 10);
