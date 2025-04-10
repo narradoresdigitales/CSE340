@@ -1,45 +1,46 @@
 <h1>Account Management</h1>
 <%- messages() %>
 
+<!-- Only show the Edit Accounts button if the account type is 'Employee' or 'Admin' -->
+<% if (account_type === 'Employee' || account_type === 'Admin') { %>
+    <button id="toggleViewBtn" class="toggle-btn">Toggle Account Manager View</button>
+<% } else { %>
+    <p>You do not have permission to edit accounts.</p>
+<% } %>
 
-<button id="toggleViewBtn" class="toggle-btn">Edit Accounts</button>
 
 <div class="account-management-container hidden">
 
-        <p class="management-view">Here you can view, reset, or delete user accounts. These actions are available only to employees and managers.</p>
-    
-        <table class="account-table">
+    <p class="management-view">Here you can view, reset, or delete user accounts. These actions are available only to employees and managers.</p>
+
+    <table class="account-table">
         <thead>
             <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Account Type</th>
-            <th>Actions</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Account Type</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <% accounts.forEach(account => { %>
-            <tr>
-                <td><%= account.account_firstname %></td>
-                <td><%= account.account_lastname %></td>
-                <td><%= account.account_email %></td>
-                <td><%= account.account_type %></td>
-                <td>
-                <form action="/account/reset/<%= account.account_id %>" method="POST">
-                    <input type="password" name="account_password" placeholder="Enter new password" required> 
-                    <button type="submit" class="action-btn">Reset Password</button>
-                </form>
-                <form action="/account/delete/<%= account.account_id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
-                    <button type="submit" name="account_password" class="action-btn">Delete Account</button>
-                </form>
-                </td>
-            </tr>
+                <tr>
+                    <td><%= account.account_firstname %></td>
+                    <td><%= account.account_lastname %></td>
+                    <td><%= account.account_email %></td>
+                    <td><%= account.account_type %></td>
+                    <td>
+                        <form action="/account/reset/<%= account.account_id %>" method="POST">
+                            <input type="password" name="account_password" placeholder="Enter new password" required> 
+                            <button type="submit" class="action-btn">Reset Password</button>
+                        </form>
+                        <form action="/account/delete/<%= account.account_id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                            <button type="submit" name="account_password" class="action-btn">Delete Account</button>
+                        </form>
+                    </td>
+                </tr>
             <% }) %>
         </tbody>
-        </table>
-    </div>
-
-
-
-
+    </table>
+</div>
