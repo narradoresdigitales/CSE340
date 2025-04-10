@@ -1,25 +1,38 @@
-console.log('script.js loaded')
+console.log('script.js loaded');
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the button element by ID (no need for the '#')
+    // Password toggle logic
     const pswdBtn = document.getElementById("pswdBtn");
 
-    // Check if the button exists before adding the event listener
     if (pswdBtn) {
         pswdBtn.addEventListener("click", function () {
             const pswdInput = document.getElementById("pword");
             const type = pswdInput.getAttribute("type");
-            
-            // Toggle the password visibility
+
             if (type === "password") {
                 pswdInput.setAttribute("type", "text");
-                pswdBtn.innerHTML = "Hide Password";  // Change button text
+                pswdBtn.innerHTML = "Hide Password";
             } else {
                 pswdInput.setAttribute("type", "password");
-                pswdBtn.innerHTML = "Show Password";  // Change button text
+                pswdBtn.innerHTML = "Show Password";
             }
         });
     } else {
         console.log('Password button not found.');
+    }
+
+    // Toggle account manager view logic
+    const toggleBtn = document.getElementById('toggleViewBtn');
+    const container = document.querySelector('.account-management-container');
+
+    if (toggleBtn && container) {
+        toggleBtn.addEventListener('click', () => {
+            container.classList.toggle('hidden');
+            toggleBtn.textContent = container.classList.contains('hidden')
+                ? 'Show Account Manager'
+                : 'Hide Account Manager';
+        });
+    } else {
+        console.log('Toggle button or account manager container not found.');
     }
 });

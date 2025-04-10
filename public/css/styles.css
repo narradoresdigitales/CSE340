@@ -75,6 +75,8 @@ h1, h2 {
   font-weight: bold;
 }
 
+
+
 /* Mobile-Specific Adjustments */
 @media (max-width: 767px) {
   nav {
@@ -768,6 +770,50 @@ input:required:valid {
 
 
 /* Styles for New features added to accountManagement.ejs */
+
+.hidden {
+  display: none;
+}
+
+.account-management-container {
+  display: none;
+}
+
+/* When it's toggled (removing .hidden), show it */
+.account-management-container:not(.hidden) {
+  display: block;
+}
+
+.toggle-btn {
+  padding: 12px 20px;
+  margin: 10px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: 1px solid #007BFF;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.toggle-btn:active {
+  background-color: #004085;
+  transform: translateY(0);
+}
+
+
+
 
 .account-management {
   display: flex;
