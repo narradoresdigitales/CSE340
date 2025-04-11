@@ -95,10 +95,6 @@ validate.checkLoginData = async (req, res, next) => {
 
 
 
-
-
-
-
 /* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
@@ -120,5 +116,21 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
 }
+
+// ✅ New Middleware to restrict client access
+validate.checkEmployeeOrAdmin = (req, res, next) => {
+  const accountType = req.session.account_type;
+
+  if (accountType === "Admin" || accountType === "Employee") {
+    return next(); // Let them through
+  }
+
+  req.flash("notice", "You do not have access to that page.");
+  return res.redirect("/");
+};
+
+
+
+
 
 module.exports = validate

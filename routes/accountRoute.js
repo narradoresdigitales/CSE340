@@ -5,6 +5,7 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
+
 /* ********************************************
 * Deliver Login View
 * ********************************************* */
@@ -41,7 +42,7 @@ router.post(
 * Account Management View
 * ********************************************* */
 router.get(
-    "/accountManagement", 
+    "/accountManagement", regValidate.checkEmployeeOrAdmin,
     utilities.handleErrors(accountController.buildAccountManagement))
 
 router.get('/reset/:account_id', accountController.resetPassword) 
@@ -49,6 +50,15 @@ router.get('/reset/:account_id', accountController.resetPassword)
 router.post('/reset/:account_id', accountController.resetPassword)
 
 router.post('/delete/:account_id', accountController.deleteAccount)
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router 

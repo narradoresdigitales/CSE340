@@ -539,10 +539,7 @@ p.notice {
   color: #333;
 }
 
-.form-comment {
-  color: red;
-  align-items: left;
-}
+
 
 
 .login-container form {
@@ -959,4 +956,125 @@ input:required:valid {
 
 
 
+/* Styles for Management.ejs */
+/* Main Container */
+.management-container {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  max-width: 960px;
+}
 
+/* Headings */
+.management-container h1,
+.management-container h2 {
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.management-container h2 {
+  font-size: 1.5rem;
+  margin-top: 30px;
+}
+
+/* Paragraphs */
+.management-container p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Options Section */
+.management-container section {
+  margin-top: 20px;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-left: 4px solid #007BFF;
+  border-radius: 6px;
+}
+
+.management-container section p {
+  font-weight: bold;
+}
+
+.management-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.management-container ul li {
+  margin-bottom: 10px;
+  
+}
+
+.management-container ul li a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.management-container ul li a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Inventory Table */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+#inventoryDisplay th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Noscript warning */
+noscript {
+  color: red;
+  font-weight: bold;
+}
+
+#classificationList {
+  padding: 12px 20px; /* Increased vertical padding and more horizontal space */
+  margin: 10px 10px;
+  background-color: #007BFF; /* Primary button color */
+  color: white;
+  border: 1px solid #007BFF; /* Border to match the button's color */
+  border-radius: 8px; /* Subtle rounded corners */
+  font-size: 16px; /* Adjusted font size for readability */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Soft shadow for depth */
+}
+
+#classificationList:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight raise effect on hover */
+}
+
+#classificationList:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Focus ring for accessibility */
+}
+
+#classificationList:active {
+  background-color: #004085; /* Even darker blue when pressed */
+  transform: translateY(0); /* Button "press" effect */
+}
