@@ -6,18 +6,22 @@ const errorController = require('../controllers/errorController')
 utilities = require('../utilities')
 
 
-
-
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId)
+router.get(
+  "/type/:classificationId", invController.buildByClassificationId)
 
 // Route to show vehicle details by inv_id
-router.get("/detail/:invId", invController.showVehicleDetail)
+router.get(
+  "/detail/:invId", invController.showVehicleDetail)
 
-router.get("/", invController.buildManagementView)
+router.get(
+  "/", invController.buildManagementView)
 
-router.get('/add-classification', invController.showAddClassification)
-router.post('/add-classification', invController.addClassification)
+router.get(  
+  '/add-classification', invController.showAddClassification)
+
+  router.post(
+  '/add-classification', invController.addClassification)
 
 router.get(
     "/getInventory/:classification_id",
@@ -26,10 +30,18 @@ router.get(
 router.get(
   "/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
 
-router.get('/add-inventory', invController.addInventory)
-router.post('/add-inventory', invController.addInventory) 
-router.get('/trigger-error', errorController.throwError)
+router.post(
+  "/update/", utilities.handleErrors(invController.updateInventory))
 
-module.exports = router;
+router.get(  
+  '/add-inventory', invController.addInventory)
+
+router.post(
+  '/add-inventory', invController.addInventory)  
+
+router.get(
+'/trigger-error', errorController.throwError)
+
+module.exports = router;   
 
 

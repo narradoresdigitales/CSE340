@@ -11,7 +11,7 @@
     </div>
 <% } %>
 <div class="login-container"> 
-    <form action="/inv/update" method="POST">
+    <form action="/inv/update" method="post" id="updateForm">
         </select>
         <label for="make">Make:</label>
         <input type="text" id="make" name="inv_make" required value="<%=inv_make %>">
@@ -32,5 +32,8 @@
         <label for="color">Color:</label>
         <input type="text" id="color" name="inv_color" required value="<%=inv_color %>">
         <input type="submit" name="submit" value="Update Vehicle">
+        <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
 </form>
 </div>
