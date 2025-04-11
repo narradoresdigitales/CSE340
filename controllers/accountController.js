@@ -146,11 +146,20 @@ async function buildAccountManagement(req, res, next) {
 
     console.log("Account Type from Session: ", req.session.account_type);  // Log the session value
 
+    if (req.session.account_type === "Client") {
+        console.log("Redirecting Client to homepage");
+        return res.redirect("/");
+    }
+
     try {
         const accounts = await accountModel.getAllAccounts(); 
 
-        req.flash('notice', "You are logged in.");
+        
+
+        req.flash('notice', 'Hello, You are logged in!'); 
+
         console.log("Logged-in user account type: ", req.session.account_type);
+        
         res.render("account/accountManagement", {
         title: "Account Management",
         nav,
